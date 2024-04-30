@@ -33,6 +33,7 @@ import (
 
 	"github.com/ClickHouse/clickhouse-go/v2/lib/column"
 	ldriver "github.com/ClickHouse/clickhouse-go/v2/lib/driver"
+	"github.com/XSAM/otelsql"
 )
 
 var globalConnID int64
@@ -176,7 +177,7 @@ func OpenDB(opt *Options) *sql.DB {
 		})
 	}
 	o := opt.setDefaults()
-	return sql.OpenDB(&stdConnOpener{
+	return otelsql.OpenDB(&stdConnOpener{
 		opt:    o,
 		debugf: debugf,
 	})
